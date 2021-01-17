@@ -15,16 +15,48 @@ public class Product {
     private String name;
     private String desc;
     private String image;
+    private double price;
+    private boolean hot;
+    private int category;
     
     public Product() {
     }
 
-    public Product(int id, String name, String desc, String image) {
+    public Product(int id, String name, String desc, String image, double price, boolean hot, int cateId) {
         this.id = id;
         this.name = name;
         this.desc = desc;
         this.image = image;
+        this.price = price;
+        this.hot = hot;
+        this.category = cateId;
     }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public boolean isHot() {
+        return hot;
+    }
+
+    public void setHot(boolean hot) {
+        this.hot = hot;
+    }
+
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(int cateId) {
+        this.category = cateId;
+    }
+
+    
 
     public int getId() {
         return id;
