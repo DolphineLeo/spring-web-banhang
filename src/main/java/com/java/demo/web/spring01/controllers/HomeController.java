@@ -66,7 +66,8 @@ public class HomeController {
             model.addAttribute("newProducts", newProducts);
             
             // Lấy ra 3 sp gợi ý
-            
+            List<Product> randProducts = prodModel.getRandProduct(3);
+            model.addAttribute("randProducts", randProducts);
             
         } catch (Exception ex) {
             ex.printStackTrace();

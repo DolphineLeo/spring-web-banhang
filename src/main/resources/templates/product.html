@@ -14,6 +14,13 @@ and open the template in the editor.
       footer {
           background-color: #f8f9fa;
       }
+      .img-container {
+          background-color: #cecece;
+          text-align: center;
+      }
+      #desc{
+          padding-top: 15px;
+      }
     </style>
   </head>
   <body>
@@ -47,29 +54,57 @@ and open the template in the editor.
     <div class="container" id="main">
       <div class="card mt-4 mb-4">
         <div class="card-body">
-          <h3 class="card-title">Trang Chi tiết sản phẩm</h3>
-          
+          <h3 class="card-title" th:text="${prod.name}"></h3>
+          <hr/>
           <!-- PRoduct content -->
-          <hr/>
           <div>
-            <h3>Tên sản phẩm</h3>
-            <img src="" />
-            <p>Mô tả sản phẩm ở đây</p>
-            <p>12,000đ</p>
-            <form>
-              Số lượng <input /> <button class="btn btn-primary">Thêm vào giỏ</button>
-            </form>
+            <div class="row">
+              <div class="col-4">
+                <div class="img-container">
+                  <img th:src="${prod.image}" />  
+                </div>               
+              </div>
+              <div class="col-4">
+                <ul>
+                  <li>Mã sản phẩm: <b th:text="${prod.id}"></b></li>
+                  <li>Tác giả: <b th:text="${prod.author}"></b></li>
+                  <li>Nhà xuất bản: <b th:text="${prod.publisher}"></b></li>
+                  <li>Ngày phát hành: <b th:text="${prod.publishedDate}"></b></li>
+                </ul>
+
+              </div>
+              <div class="col-4">
+                <div class="alert alert-primary" role="alert">
+                  Giá bán: <b th:text="${prod.price}"></b> (Đã có VAT)
+                </div>
+
+                <form>
+                  <label class="form-label">Số lượng</label> 
+                  <input class="form-control" type="number"/> 
+                  <br/>
+                  <button class="btn btn-primary">Thêm vào giỏ</button>
+                </form>
+              </div>
+            </div>
+            <div class="row">
+              <div id="desc" class="col-12">
+                <h3>Giới thiệu sách</h3>
+                <div class="book-content" th:text="${prod.content}">
+                </div>  
+              </div>
+
+            </div>
           </div>
-          <hr/>
+
           <!-- End PRoduct content -->
-          
+
           <a href="/" class="btn btn-link">Về trang chủ</a>
         </div>
       </div>
 
     </div>
 
-    <footer class="text-muted py-5 fixed-bottom">
+    <footer class="text-muted py-5">
       <div class="container">
         <p class="mb-1">Album example is © Bootstrap, but please download and customize it for yourself!</p>
         <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.0/getting-started/introduction/">getting started guide</a>.</p>

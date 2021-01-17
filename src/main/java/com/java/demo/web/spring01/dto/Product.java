@@ -5,6 +5,8 @@
  */
 package com.java.demo.web.spring01.dto;
 
+import java.util.Date;
+
 /**
  *
  * @author hoangnghiem
@@ -18,6 +20,10 @@ public class Product {
     private double price;
     private boolean hot;
     private int category;
+    private String author;
+    private String publisher;
+    private Date publishedDate;
+    private String content;
     
     public Product() {
     }
@@ -32,6 +38,40 @@ public class Product {
         this.category = cateId;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public Date getPublishedDate() {
+        return publishedDate;
+    }
+
+    public void setPublishedDate(Date publishedDate) {
+        this.publishedDate = publishedDate;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    
+    
     public double getPrice() {
         return price;
     }
