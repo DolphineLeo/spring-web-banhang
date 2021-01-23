@@ -5,6 +5,7 @@
  */
 package com.java.demo.web.spring01.controllers;
 
+import com.java.demo.web.spring01.dto.LoginInfo;
 import com.java.demo.web.spring01.dto.Product;
 import com.java.demo.web.spring01.dto.Slider;
 import com.java.demo.web.spring01.model.ProductModel;
@@ -15,13 +16,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
 
 /**
  *
  * @author hoangnghiem
  */
 @Controller
+@SessionAttributes("user")
 public class HomeController {
 
     private List<Slider> getSliders() {
@@ -46,16 +52,23 @@ public class HomeController {
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "https://picsum.photos/seed/picsum/800/400")
         );
+        
         return sliders;
     }
 
+    @RequestMapping("/loginHandle")
+    public String login(@ModelAttribute LoginInfo loginInfo, Model model) {
+        model.addAttribute("user", loginInfo.getUsername());
+        return "redirect:/";
+    }
+    
     @RequestMapping("/")
     public String home(Model model) {
         try {
             String title = "TIEU DE";
             model.addAttribute("title", title);
             model.addAttribute("sliders", this.getSliders());
-
+            
             // Lấy ra 3 sp hot
             ProductModel prodModel = new ProductModel();
             List<Product> hotProducts = prodModel.getHotProduct(3);
@@ -81,7 +94,8 @@ public class HomeController {
     }
 
     @RequestMapping("/login")
-    public String login() {
+    public String login(Model model, @CookieValue(name = "email", value = "") String email) {
+        model.addAttribute("loginInfo", new LoginInfo(email, ""));
         return "login";
     }
 

@@ -42,14 +42,43 @@ and open the template in the editor.
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
-      Hello, <span th:text="${session.user}"></span>
     </nav>
 
     <div class="container" id="main">
+      
       <div class="card mt-4 mb-4">
         <div class="card-body">
-          <h3 class="card-title">Trang thông báo</h3>
-          <a href="/" class="btn btn-link">Về trang chủ</a>
+          <h3 class="card-title">Trang đăng ký</h3>
+          
+          <form method="POST" action="/handle_register" th:object="${registerInfo}" >
+            
+            <div class="mb-3">
+              <label for="fullname" class="form-label">Họ Tên</label>
+              <input type="text" name="fullname" th:field="*{fullname}" class="form-control" id="fullname">
+            </div>
+            
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" name="email" th:field="*{email}" class="form-control" id="email" placeholder="name@example.com">
+            </div>
+            
+            <div class="mb-3">
+              <label for="address" class="form-label">Địa chỉ</label>
+              <textarea class="form-control" name="address" id="address" th:field="*{address}"  rows="3"></textarea>
+            </div>
+            
+            <div class="mb-3">
+              <label for="password" class="form-label">Mật khẩu</label>
+              <input type="password" name="password" th:field="*{password}" class="form-control" id="password">
+            </div>
+            
+            <a href="/" class="btn btn-link">Về trang chủ</a>
+            <button class="btn btn-primary"> Đăng ký </button>
+              
+          </form>
+          
+          
+          
         </div>
       </div>
 
