@@ -5,60 +5,57 @@
  */
 package com.java.demo.web.spring01.dto;
 
+import java.util.Date;
+
 /**
  *
  * @author hoangnghiem
  */
-public class RegisterInfo {
+public class Customer {
     
+    private int id;
+    private String name;
     private String email;
-    private String fullname;
     private String password;
-    private String address;
     private String phone;
+    private String address;
+    private Date createdAt;
 
-    public RegisterInfo() {
+    public Customer() {
     }
 
-    public RegisterInfo(String email, String fullname, String password, String address) {
+    public Customer(int id, String name, String email, String password, String phone, String address, Date createdAt) {
+        this.id = id;
+        this.name = name;
         this.email = email;
-        this.fullname = fullname;
         this.password = password;
-        this.address = address;
-    }
-
-    public RegisterInfo(String email, String fullname, String password, String address, String phone) {
-        this.email = email;
-        this.fullname = fullname;
-        this.password = password;
-        this.address = address;
         this.phone = phone;
+        this.address = address;
+        this.createdAt = createdAt;
     }
 
-    public String getPhone() {
-        return phone;
+    public int getId() {
+        return id;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    
-    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getFullname() {
-        return fullname;
-    }
-
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
     }
 
     public String getPassword() {
@@ -69,12 +66,28 @@ public class RegisterInfo {
         this.password = password;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getAddress() {
         return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
     
     

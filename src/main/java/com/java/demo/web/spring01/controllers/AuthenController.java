@@ -5,7 +5,10 @@
  */
 package com.java.demo.web.spring01.controllers;
 
+import com.java.demo.web.spring01.dto.Customer;
 import com.java.demo.web.spring01.dto.RegisterInfo;
+import com.java.demo.web.spring01.model.CustomerModel;
+import java.util.Date;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -39,11 +42,33 @@ public class AuthenController {
         
         // - xử lý dữ liệu
         //       xác thực dữ liêu, mã hóa dữ liệu, lưu vào db
+        try {
+            CustomerModel customerModel = new CustomerModel();
+            
+            Customer c = new Customer();
+            c.setName(registerInfo.getFullname());
+            c.setEmail(registerInfo.getEmail());
+            c.setAddress(registerInfo.getAddress());
+            c.setPassword(registerInfo.getPassword());
+            c.setPhone(registerInfo.getPhone());
+            c.setCreatedAt(new Date());
+
+            int add = customerModel.add(c);
+
+            if (add > 0) {
+                // add cookie để ghi nhớ tk
+                Cookie cookie = new Cookie("email", registerInfo.getEmail());
+                response.addCookie(cookie);
+            } else {
+                return "redirect:/register";
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         
-        Cookie cookie = new Cookie("email", registerInfo.getEmail());
-        response.addCookie(cookie);
         
-        // - trả về view
+        // - trả về login để ng dùng đăng nhập
         return "redirect:/login";
     }
 }

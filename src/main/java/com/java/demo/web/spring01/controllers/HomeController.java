@@ -5,9 +5,11 @@
  */
 package com.java.demo.web.spring01.controllers;
 
+import com.java.demo.web.spring01.dto.Customer;
 import com.java.demo.web.spring01.dto.LoginInfo;
 import com.java.demo.web.spring01.dto.Product;
 import com.java.demo.web.spring01.dto.Slider;
+import com.java.demo.web.spring01.model.CustomerModel;
 import com.java.demo.web.spring01.model.ProductModel;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -58,7 +60,18 @@ public class HomeController {
 
     @RequestMapping("/loginHandle")
     public String login(@ModelAttribute LoginInfo loginInfo, Model model) {
-        model.addAttribute("user", loginInfo.getUsername());
+        try {
+            CustomerModel customerModel = new CustomerModel();
+            Customer c = customerModel.login(loginInfo.getUsername(), loginInfo.getPassword());
+            if (c != null) { // login thanh cong
+                // luu vao session
+                model.addAttribute("user", loginInfo.getUsername());
+            } else {
+                return "redirect:/login";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "redirect:/";
     }
     
